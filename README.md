@@ -17,21 +17,21 @@ Configuration
 -   Edit your /js/routers/todo-list.js and replace the placeholders with your
     Parse initialize script & Facebook App ID
 
-    Parse.initialize("REPLACE ME", "REPLACE ME");
+    		Parse.initialize("REPLACE ME", "REPLACE ME");
 
-	window.fbAsyncInit = function() {
+		window.fbAsyncInit = function() {
 
-		Parse.FacebookUtils.init({
+			Parse.FacebookUtils.init({
+	
+			appId      : 'REPLACE ME',
+	
+			cookie   : true,
+	
+			xfbml      : true
+	
+			});
 
-		appId      : 'REPLACE ME',
-
-		cookie   : true,
-
-		xfbml      : true
-
-		});
-
-	};
+		};
 
 -   Run npm start
 
