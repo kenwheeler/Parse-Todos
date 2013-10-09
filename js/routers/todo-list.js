@@ -10,8 +10,6 @@ define([
     },
     index: function() {
 
-      // Replace The "REPLACE ME" fields with your own Parse & Facebook creds
-
       Parse.initialize("REPLACE ME", "REPLACE ME");
 
       window.fbAsyncInit = function() {
@@ -20,53 +18,62 @@ define([
           cookie   : true,                              
           xfbml      : true                                  
         });
+
+        loadViews();
+
       };
 
-      //Check for auth
-      var currentUser = Parse.User.current();
-      if (currentUser) {
+      if (typeof FB !== 'undefined') {
+        loadViews();
+      }
 
-        // Get Current User
-        var user = Parse.User.current();
+      function loadViews() {
+        //Check for auth
+        var currentUser = Parse.User.current();
+        if (currentUser) {
 
-        // Todo Object
-        var Todo = Parse.Object.extend('Todo');
+          // Get Current User
+          var user = Parse.User.current();
+
+          // Todo Object
+          var Todo = Parse.Object.extend('Todo');
 
 
-        // Define Collection
-        var TodoCollection = Parse.Collection.extend({
-          model: Todo
-        });
+          // Define Collection
+          var TodoCollection = Parse.Collection.extend({
+            model: Todo
+          });
 
-        var collection = new TodoCollection();
+          var collection = new TodoCollection();
 
-        // Grab Objects For User
-        var TodoQuery = new Parse.Query(Todo);
-        TodoQuery.equalTo("user", user);
-        TodoQuery.find({
-          success: function(results) {
-            // Add Objects To Collection
-            for (var i = 0; i < results.length; i++) { 
-              var object = results[i];
-              collection.add(object);
+          // Grab Objects For User
+          var TodoQuery = new Parse.Query(Todo);
+          TodoQuery.equalTo("user", user);
+          TodoQuery.find({
+            success: function(results) {
+              // Add Objects To Collection
+              for (var i = 0; i < results.length; i++) { 
+                var object = results[i];
+                collection.add(object);
+              }
+            },
+            error: function(error) {
+              alert("Error: " + error.code + " " + error.message);
             }
-          },
-          error: function(error) {
-            alert("Error: " + error.code + " " + error.message);
-          }
-        });
-                
-        var view = new TodoListIndexView({
-          collection: collection
-        });
+          });
+                  
+          var view = new TodoListIndexView({
+            collection: collection
+          });
 
-        RootView.getInstance().setView(view);
+          RootView.getInstance().setView(view);
 
-      } else {
+        } else {
 
-        var view = new NotLoggedInView;
-        RootView.getInstance().setView(view);
+          var view = new NotLoggedInView;
+          RootView.getInstance().setView(view);
 
+        }
       }
 
     }
