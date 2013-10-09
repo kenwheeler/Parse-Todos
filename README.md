@@ -35,7 +35,7 @@ Configuration
 
                 });
 
-};
+            };
 
 -   Run npm start
 
