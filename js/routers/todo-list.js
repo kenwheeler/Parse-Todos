@@ -24,7 +24,15 @@ define([
       };
 
       if (typeof FB !== 'undefined') {
+
+        Parse.FacebookUtils.init({
+          appId      : 'REPLACE ME',                      
+          cookie   : true,                              
+          xfbml      : true                                  
+        });
+
         loadViews();
+
       }
 
       function loadViews() {
