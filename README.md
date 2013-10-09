@@ -1,12 +1,12 @@
 Thorax & Parse Todo Seed
-========================
+------------------------
 
-### *Example of persistent ToDos with Facebook authentication using Thorax and Parse*
+*Example of persistent ToDos with Facebook authentication using Thorax and
+Parse*
 
 
 
-Configuration
--------------
+### Configuration
 
 
 
