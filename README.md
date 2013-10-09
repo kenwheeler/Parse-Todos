@@ -10,28 +10,32 @@ Configuration
 
 
 
--   Create a [Facebook Application]
+-   Create a [Facebook Application][1]
 
--   Register & Create a new app at Parse.com
+[1]: <http://developer.facebook.com>
+
+-   Register & Create a new app at [Parse.com][2]
+
+[2]: <http://www.parse.com>
 
 -   Edit your /js/routers/todo-list.js and replace the placeholders with your
     Parse initialize script & Facebook App ID
 
-    		Parse.initialize("REPLACE ME", "REPLACE ME");
+        Parse.initialize("REPLACE ME", "REPLACE ME");
 
-		window.fbAsyncInit = function() {
+        window.fbAsyncInit = function() {
 
-			Parse.FacebookUtils.init({
-	
-			appId      : 'REPLACE ME',
-	
-			cookie   : true,
-	
-			xfbml      : true
-	
-			});
+            Parse.FacebookUtils.init({
 
-		};
+                appId      : 'REPLACE ME',
+
+                cookie      : true,
+
+                xfbml      : true
+
+                });
+
+};
 
 -   Run npm start
 
